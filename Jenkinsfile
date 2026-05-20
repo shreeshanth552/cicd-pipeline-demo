@@ -75,10 +75,12 @@ pipeline {
                         az container create \
                           --resource-group cicd-rg \
                           --name cicd-demo \
-                          --image shreeshanth552/cicd-demo:latest \
+                          --image shreeshanth2004/cicd-demo:latest \
                           --dns-name-label cicd-demo-app \
                           --ports 3000 \
                           --os-type Linux \
+                          --cpu 1 \
+                          --memory 1.5 \
                           --restart-policy Always
                     '''
                 }
