@@ -24,6 +24,7 @@ pipeline {
 
         stage('OWASP Dependency Check') {
             steps {
+                sh 'mkdir -p dependency-check-report'
                 dependencyCheck additionalArguments: '--scan ./ --format HTML --format XML --out dependency-check-report/ --noupdate', odcInstallation: 'OWASP-Dep-Check'
                 dependencyCheckPublisher pattern: '**/dependency-check-report/dependency-check-report.xml'
             }
@@ -37,8 +38,7 @@ pipeline {
                         sonar-scanner \
                           -Dsonar.projectKey=cicd-pipeline-demo \
                           -Dsonar.sources=src \
-                          -Dsonar.projectName=CI-CD-Pipeline-Demo \
-                          -Dsonar.login=$SONAR_TOKEN
+                          -Dsonar.projectName=CI-CD-Pipeline-Demo
                     '''
                 }
             }
@@ -75,7 +75,7 @@ pipeline {
                         az container create \
                           --resource-group cicd-rg \
                           --name cicd-demo \
-                          --image $AZURE_CLIENT_ID/cicd-demo:latest \
+                          --image shreeshanth552/cicd-demo:latest \
                           --dns-name-label cicd-demo-app \
                           --ports 3000 \
                           --os-type Linux \
