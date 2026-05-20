@@ -37,7 +37,8 @@ pipeline {
                         sonar-scanner \
                           -Dsonar.projectKey=cicd-pipeline-demo \
                           -Dsonar.sources=src \
-                          -Dsonar.projectName=CI-CD-Pipeline-Demo
+                          -Dsonar.projectName=CI-CD-Pipeline-Demo \
+                          -Dsonar.login=$SONAR_TOKEN
                     '''
                 }
             }
