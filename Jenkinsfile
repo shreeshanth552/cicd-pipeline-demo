@@ -70,7 +70,7 @@ pipeline {
                           -p $AZURE_CLIENT_SECRET \
                           --tenant $AZURE_TENANT_ID
 
-                        az group create --name cicd-rg --location eastus
+                        az group create --name cicd-rg --location centralindia
 
                         az container create \
                           --resource-group cicd-rg \
